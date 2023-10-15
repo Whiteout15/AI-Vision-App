@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native"; // Import StyleSheet and View
 import DropDownPicker from "react-native-dropdown-picker";
-import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function BirthYear({}) {
-  const navigation = useNavigation();
+  const navigation = useRouter();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
@@ -17,7 +18,7 @@ function BirthYear({}) {
   const placeholderText = "Select a Year";
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <DropDownPicker
         open={open}
         value={value}
@@ -27,7 +28,7 @@ function BirthYear({}) {
         setItems={setItems}
         placeholder={placeholderText} // Set the custom placeholder text
       />
-    </View>
+    </SafeAreaView>
   );
 }
 

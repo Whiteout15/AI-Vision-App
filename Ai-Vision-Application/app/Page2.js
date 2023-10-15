@@ -1,17 +1,18 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { Text, Button } from "react-native";
+import { useRouter } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 function Page2Screen({}) {
-  const navigation = useNavigation();
+  const navigation = useRouter();
   return (
-    <View>
+    <SafeAreaView>
       <Text>This is the Second Page</Text>
       <Button
         title="Go to Next Page"
-        onPress={() => navigation.navigate("BirthYear")}
+        onPress={() => navigation.push("BirthYear")}
       />
-    </View>
+    </SafeAreaView>
   );
 }
 
