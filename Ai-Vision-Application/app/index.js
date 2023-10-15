@@ -1,5 +1,5 @@
 import { Text, View, TouchableOpacity } from "react-native";
-import { useRouter, Stack } from "expo-router";
+import { useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../assets/screenstyles/homescreen.style";
