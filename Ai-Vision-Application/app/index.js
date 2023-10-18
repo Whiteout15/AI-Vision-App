@@ -21,9 +21,9 @@ export default function HomeScreen() {
       </View>
       <TouchableOpacity
         style={styles.button}
-        title="Go to Second Page"
+        title="Continue"
         onPress={() => {
-          navigation.push("Page2");
+          navigation.push("Terms");
         }}
       >
         <Text style={styles.text}>Continue</Text>
