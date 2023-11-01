@@ -1,8 +1,8 @@
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, CheckBox } from "react-native";
 import { useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "../assets/screenstyles/homescreen.style";
+import { styles } from "../assets/screenstyles/terms.style";
 import Header from "./Header";
 
 function Terms() {
@@ -10,13 +10,11 @@ function Terms() {
   const navigation = useRouter();
   return (
     <SafeAreaView style={styles.container}>
-        <Header title="Detail Screen" onBackPress={() => navigation.goBack("index")} />
+        <Header title="Terms of Service" onPress={() => navigation.goBack()}/>
         <View style={styles.titleContainer}>
         
-
-            <Text style={styles.title}>Terms of Service</Text>
         </View>
-      <Text>
+      <Text style={styles.subText}>
         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
         IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
         FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,7 +30,7 @@ function Terms() {
           navigation.push("Glasses");
         }}
       >
-        <Text style={styles.text}>Continue</Text>
+        <Text style={styles.text}>I Agree</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

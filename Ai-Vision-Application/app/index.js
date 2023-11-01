@@ -16,7 +16,7 @@ export default function HomeScreen() {
         <Text style={styles.title}>Welcome to the VisionAI App</Text>
         <Text style={styles.subText}>
           An Artificial Intelligence Based Near Vision Tester. Providing
-          accurate and reliable at home vision testing
+          accurate and reliable at home vision testing.
         </Text>
       </View>
       <TouchableOpacity
