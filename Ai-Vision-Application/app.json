@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router"],
+    "name": "Ai-Vision-Application",
+    "slug": "Ai-Vision-Application",
+    "scheme": "ai-vision-application"
+  }
+}
