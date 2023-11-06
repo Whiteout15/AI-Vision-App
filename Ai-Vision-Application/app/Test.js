@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { useNavigation } from 'expo-router';
+import React, { useState, useEffect } from "react";
+import { Text, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "expo-router";
 import { styles } from "../assets/screenstyles/test.style";
 import Header from "./Header";
-
+import EndTest from "./EndTest";
 // Function to generate a random 4-letter string
 function generateRandomString() {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Define the character set
-  let randomString = '';
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Define the character set
+  let randomString = "";
 
   for (let i = 0; i < 4; i++) {
     const randomIndex = Math.floor(Math.random() * alphabet.length);
@@ -32,7 +32,7 @@ function Test() {
   // Use useEffect to navigate when buttonPressCount reaches 6
   useEffect(() => {
     if (buttonPressCount === 6) {
-      navigation.push("EndTest"); // Replace 'EndTest' with your actual destination route
+      navigation.push("EndTest", { randomString, buttonPressCount }); // Replace 'EndTest' with your actual destination route
     }
   }, [buttonPressCount, navigation]);
 
@@ -45,7 +45,7 @@ function Test() {
       <View style={styles.centerText}>
         <Text style={styles.testText}>{randomString}</Text>
       </View>
-      
+
       <View style={styles.buttonContainer}>
         <View style={styles.titleContainer}>
           <TouchableOpacity
@@ -58,6 +58,10 @@ function Test() {
         </View>
       </View>
       <Text>Button Press Count: {buttonPressCount}</Text>
+      <EndTest
+        randomString={randomString}
+        buttonPressCount={buttonPressCount}
+      />
     </View>
   );
 }
