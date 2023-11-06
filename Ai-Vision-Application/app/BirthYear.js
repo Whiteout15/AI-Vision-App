@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { styles } from "../assets/screenstyles/glasses.style";
+import { styles } from "../assets/screenstyles/birthyear.style";
 import Header from "./Header";
 
 function BirthYear() {
@@ -39,16 +39,16 @@ function BirthYear() {
           setValue={setValue}
           placeholder={placeholderText}
         />
+        <TouchableOpacity
+          style={styles.button}
+          title="Continue to Test"
+          onPress={() => {
+            navigation.push("Test");
+          }}
+        >
+          <Text style={styles.text}>I Agree</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.button}
-        title="Continue to Test"
-        onPress={() => {
-          navigation.push("Test");
-        }}
-      >
-        <Text style={styles.text}>I Agree</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 }

@@ -2,24 +2,14 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1, // Set flex to 1 to fill the available space
-    // justifyContent: "center",
-    alignItems: "center",
+    flex: 1,
+    backgroundColor: "#fff",
   },
 
   title: {
     marginTop: 50,
-    fontSize: 50,
+    fontSize: 30, // Reduce the font size for better appearance
     fontWeight: "bold",
-    textAlign: "center",
-  },
-
-  subText: {
-    marginTop: 50,
-    marginLeft: 50,
-    marginRight: 50,
-    fontSize: 20,
-    fontWeight: "normal",
     textAlign: "center",
   },
 
@@ -28,15 +18,23 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  text: {
-    color: "#FFF",
+  buttonContainer: {
+    flexDirection: "row", // Place buttons horizontally
+    justifyContent: "space-around", // Adjust as needed
+    marginTop: 20, // Add spacing between the title and buttons
   },
 
   button: {
     backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
+    margin: 50,
     padding: 10,
-    margin: 100,
+    width: 100, // Set a fixed width for the buttons
+  },
+
+  text: {
+    fontWeight: "bold",
+    color: "#FFF",
   },
 });

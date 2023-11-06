@@ -33,7 +33,11 @@ function Terms() {
         style={styles.button}
         title="Continue to Test"
         onPress={() => {
-          navigation.push("Glasses");
+          if (isChecked) {
+            navigation.push("Glasses");
+          } else {
+            alert("Please agree to the terms of service to continue");
+          }
         }}
       >
         <Text style={styles.text}>I Agree</Text>
