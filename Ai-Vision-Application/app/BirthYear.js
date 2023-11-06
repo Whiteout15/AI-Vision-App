@@ -43,7 +43,12 @@ function BirthYear() {
           style={styles.button}
           title="Continue to Test"
           onPress={() => {
-            navigation.push("Test");
+            if (value === null) {
+              alert("Please select a birth year");
+              return;
+            } else {
+              navigation.push("Test");
+            }
           }}
         >
           <Text style={styles.text}>I Agree</Text>
