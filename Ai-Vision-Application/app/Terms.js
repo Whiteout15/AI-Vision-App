@@ -1,4 +1,4 @@
-import { Text, View, TouchableOpacity, CheckBox } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../assets/screenstyles/terms.style";

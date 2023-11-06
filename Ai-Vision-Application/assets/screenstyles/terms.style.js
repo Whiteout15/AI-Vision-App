@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     height: 25,
     width: 25,
     marginTop: 10,
-    marginLeft: 150,
-    marginRight: 150,
+    marginLeft: 170,
+    marginRight: 180,
   },
 });
