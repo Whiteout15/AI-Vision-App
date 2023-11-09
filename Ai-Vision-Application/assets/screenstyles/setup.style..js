@@ -28,6 +28,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 20,
     padding: 10,
     width: 100, // Set a fixed width for the buttons
   },
@@ -36,4 +37,20 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#FFF",
   },
+
+  switch: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    marginBottom: 20,
+  },
+
+  switchTitle: {
+    fontSize: 30, // Reduce the font size for better appearance
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+
+
 });

@@ -23,24 +23,27 @@ function Terms() {
         SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </Text>
 
-      <Checkbox
-        style={styles.checkbox}
-        value={isChecked}
-        onValueChange={setChecked}
-      />
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+        <Checkbox
+          style={styles.checkbox}
+          value={isChecked}
+          onValueChange={setChecked}
+        />
+        <Text>I agree to the Terms of Service</Text>
+      </View>
 
       <TouchableOpacity
         style={styles.button}
         title="Continue to Test"
         onPress={() => {
           if (isChecked) {
-            navigation.push("Glasses");
+            navigation.push("Setup");
           } else {
             alert("Please agree to the terms of service to continue");
           }
         }}
       >
-        <Text style={styles.text}>I Agree</Text>
+        <Text style={styles.text}>Continue</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

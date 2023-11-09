@@ -27,14 +27,14 @@ export const styles = StyleSheet.create({
 
   testText: {
     marginTop: 50,
-    fontSize: 90, // Reduce the font size for better appearance
+    fontSize: 70, // Reduce the font size for better appearance
     fontWeight: "bold",
     textAlign: "center",
     justifyContent: "center",
     alignItems: "center",
     // flex: 1,
-    letterSpacing: 40,
-    marginRight: -40,
+    letterSpacing: 30,
+    marginRight: -30,
   },
 
   buttonContainer: {
@@ -49,6 +49,9 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 10,
     width: 100, // Set a fixed width for the buttons
+    marginBottom: 10,
+    color: "#FFF",
+    fontWeight: "bold",
   },
 
   text: {

@@ -4,7 +4,7 @@ import { styles } from "../assets/screenstyles/test.style";
 import Header from "./Header";
 import Test from "./Test";
 
-function EndTest({ navigation, randomString, buttonPressCount }) {
+function Results({ navigation, randomString}) {
   return (
     <View style={styles.container}>
       <Header title="Vision Test" onBackPress={() => navigation.goBack()} />
@@ -18,9 +18,8 @@ function EndTest({ navigation, randomString, buttonPressCount }) {
       <View style={styles.buttonContainer}>
         <View style={styles.titleContainer}></View>
       </View>
-      <Text>Button Press Count: {buttonPressCount}</Text>
     </View>
   );
 }
 
-export default EndTest;
+export default Results;
