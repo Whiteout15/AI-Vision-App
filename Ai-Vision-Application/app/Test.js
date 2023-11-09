@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "expo-router";
 import { styles } from "../assets/screenstyles/test.style";
 import Header from "./Header";
-import EndTest from "./EndTest";
+import EndTest from "./Results";
 // Function to generate a random 4-letter string
 function generateRandomString() {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789"; // Define the character set
@@ -42,7 +42,7 @@ function Test() {
   // Use useEffect to navigate when buttonPressCount reaches 6
   useEffect(() => {
     if (buttonPressCount === 6) {
-      navigation.push("EndTest", { randomString, buttonPressCount }); // Replace 'EndTest' with your actual destination route
+      navigation.push("Results", { randomString, buttonPressCount }); // Replace 'EndTest' with your actual destination route
     }
   }, [buttonPressCount, navigation]);
 
