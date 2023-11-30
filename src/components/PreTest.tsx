@@ -4,6 +4,8 @@ import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
 import React, { useRef, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import "./Pretest.css";
+import Header from "./Header/Header";
 
 const PreTest: React.FC = () => {
   const history = useHistory();
@@ -17,6 +19,8 @@ const PreTest: React.FC = () => {
   const knownDistanceMm = knownDistanceInches * 25.4; // Convert inches to mm
   const knownWidthMm = 63; //mm
   const focalLengthPixels: number = 0.78; // Your calculated focal length in pixels
+
+  let distanceFromWebcamInches = 0;
 
   function calculateDistanceFromWebcam(
     focalLengthPixels: number,
@@ -62,7 +66,7 @@ const PreTest: React.FC = () => {
     return distanceFromCameraMm;
   }
 
-  //setting heigh and width of the canvas by giving the webcam video height and width
+  //setting height and width of the canvas by giving the webcam video height and width
   function onResults(results) {
     canvasRef.current.width = webcamRef.current.video.videoWidth;
     canvasRef.current.height = webcamRef.current.video.videoHeight;
@@ -132,19 +136,20 @@ const PreTest: React.FC = () => {
             knownWidthMm
           );
           // Convert the distance to inches
-          const distanceFromWebcamInches = distanceFromWebcamMm / 25.4;
-          canvasCtx.font = "18px Arial";
+          const distanceFromWebcamInches = distanceFromWebcamMm / 25.4;        
+          
+          canvasCtx.font = "30px Arial";
           canvasCtx.fillStyle = "black";
           canvasCtx.save(); // Save the current state
           canvasCtx.scale(-1, 1); // Flip the context horizontally
 
-          canvasCtx.translate(-canvasElement.width, 10);
+          canvasCtx.translate(-canvasElement.width, 0);
 
           // // Calculate the position for the rectangle and clear it
-          const margin = 10; // Margin from the edge
-          const rectWidth = 200;
+          const margin = 0; // Margin from the edge
+          const rectWidth = 280;
           const rectX = canvasElement.width - rectWidth - margin; // X position for rectangle
-          canvasCtx.clearRect(rectX, 0, rectWidth, 50);
+          canvasCtx.clearRect(rectX, 0, rectWidth, 40);
 
           // // Restore the context to draw text in non-mirrored state
           canvasCtx.restore();
@@ -153,17 +158,17 @@ const PreTest: React.FC = () => {
           canvasCtx.save();
 
           canvasCtx.fillText(
-            `Distance: ${distanceFromWebcamInches.toFixed(2)} inches`,
+            `Distance: ${distanceFromWebcamInches.toFixed(0)} inches`,
             10,
             30
           );
           canvasCtx.restore();
           // Log the distance to the console or display it on the page in inches
-          console.log(
-            `Distance from webcam: ${distanceFromWebcamInches.toFixed(
-              2
-            )} inches`
-          );
+          // console.log(
+          //   `Distance from webcam: ${distanceFromWebcamInches.toFixed(
+          //     2
+          //   )} inches`
+          // );
         } catch (error) {
           console.error("error calculating distance: ", error);
         }
@@ -212,35 +217,21 @@ const PreTest: React.FC = () => {
   return (
     <div className="PreTest">
       <Webcam
+      className="webcam"
         hidden={true}
         ref={webcamRef}
         style={{
-          position: "absolute",
-          marginLeft: "auto",
-          marginRight: "auto",
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          zIndex: 9,
-          width: 640,
-          height: 480,
+          
         }}
       />
-
       <canvas
+      className="webcam-canvas"
         ref={canvasRef}
         style={{
-          position: "absolute",
-          marginLeft: "auto",
-          marginRight: "auto",
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          zIndex: 9,
-          width: 640,
-          height: 480,
+         
         }}
       ></canvas>
+
     </div>
   );
 };

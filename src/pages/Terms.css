@@ -22,3 +22,18 @@
 #container a {
   text-decoration: none;
 }
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  padding-left: 60px;
+  padding-right: 60px;
+  justify-content: space-evenly;
+}
+
+.checkbox {
+  width: 40px;
+  height: 40px;
+}
+
+

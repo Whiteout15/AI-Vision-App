@@ -31,6 +31,7 @@
     "material-components-web": "^14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "react-webcam": "^7.2.0"

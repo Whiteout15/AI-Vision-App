@@ -15,6 +15,7 @@ import { useHistory } from "react-router-dom";
 import "./Terms.css";
 import PreTest from "../components/PreTest";
 import "./Home.css";
+import Header from "../components/Header/Header";
 
 const CameraPage: React.FC = () => {
   const history = useHistory();
@@ -25,17 +26,8 @@ const CameraPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Distance calculations</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <Header headerText="Distance Calculations"/>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Distance calculations</IonTitle>
-          </IonToolbar>
-        </IonHeader>
         <PreTest />
       </IonContent>
       <IonButton onClick={continueToExam}>

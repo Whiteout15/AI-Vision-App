@@ -9,7 +9,7 @@ const Test: React.FC = () => {
   const history = useHistory();
 
   const goToSampleTest = () => {
-    history.push("./SampleTest");
+    history.push("./VisionTest");
   };
 
   const webcamRef = useRef<HTMLVideoElement>(null);

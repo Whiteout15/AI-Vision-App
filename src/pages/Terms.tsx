@@ -1,17 +1,5 @@
-import React, { useState } from "react";
-import {
-  IonPage,
-  IonButton,
-  IonIcon,
-  IonCheckbox,
-  IonAlert,
-  IonLabel,
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
-
+import React, { useState, useEffect } from "react";
+import { IonPage, IonContent, IonIcon, IonCheckbox, IonAlert } from "@ionic/react";
 import { eyeOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header/Header";
@@ -22,64 +10,84 @@ const Terms: React.FC = () => {
   const [isChecked, setChecked] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
+  useEffect(() => {
+    // Check if it's the first launch
+    const isFirstLaunch = localStorage.getItem("firstLaunch") === null;
+
+    // If it's not the first launch, navigate to the next page
+    if (!isFirstLaunch) {
+      history.push("/TestConfig");
+    }
+  }, [history]);
+
   const handleCheckboxChange = () => {
     setChecked(!isChecked);
   };
 
   const continueToConfig = () => {
     if (isChecked) {
-      history.push("/TestConfig"); // Ensure the route is correct
+      // Set the first launch flag in localStorage and navigate to the next page
+      localStorage.setItem("firstLaunch", "false");
+      history.push("/TestConfig");
     } else {
       setShowAlert(true);
     }
   };
 
-  return (
-    //fix CSS by giving ionPage a class name.  Like the commented out line below
-    // <IonPage id="container">
-    <IonPage>
-      <Header headerText="Terms and Conditions"/>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Terms and Agreements</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen className="ion-padding">
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">AI-Vision-App</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <h1>Please read and accept the terms of agreement to continue</h1>
+  // If it's not the first launch, return null to skip rendering the entire component
+  if (localStorage.getItem("firstLaunch") === null) {
+    return (
+      <IonPage>
+        <Header headerText="Terms and Conditions"/>
+        <IonContent fullscreen className="ion-padding">
+          <div>
+            <h1>
+              <strong>Please read and accept the terms of agreement to continue</strong>
+            </h1>
 
-        <p>
-          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-          EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-          MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-          IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-          CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-          TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-          SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.{" "}
-        </p>
+            <p>
+              THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+              EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+              MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+              IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+              CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+              TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+              SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.{" "}
+            </p>
 
-        <IonLabel>
-          <strong>I agree to the terms and conditions.</strong>
-        </IonLabel>
-        <IonCheckbox checked={isChecked} onIonChange={handleCheckboxChange} />
-        <IonAlert
-          isOpen={showAlert}
-          onDidDismiss={() => setShowAlert(false)}
-          header="Terms and Conditions not accepted"
-          message="Please accept the terms and conditions to continue"
-          buttons={["OK"]}
-        />
-      </IonContent>
-      <IonButton onClick={continueToConfig}>
-        Continue
-        <IonIcon slot="end" icon={eyeOutline}></IonIcon>
-      </IonButton>
-    </IonPage>
-  );
+            <label className="checkbox-label">
+              <h1>
+                <strong>I agree.</strong>
+              </h1>
+              <input type="checkbox" className="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
+            </label>
+          </div>
+          <div className="button-container">
+          <button className="home-button" onClick={continueToConfig}>
+            <h1>Continue</h1>
+            <IonIcon
+              className="eye"
+              slot="end"
+              size="large"
+              icon={eyeOutline}
+            ></IonIcon>
+          </button>
+        </div>
+
+          <IonAlert
+            isOpen={showAlert}
+            onDidDismiss={() => setShowAlert(false)}
+            header="Terms and Conditions not accepted"
+            message="Please accept the terms and conditions to continue"
+            buttons={["OK"]}
+          />
+        </IonContent>
+      </IonPage>
+    );
+  }
+
+  // If it's the first launch, return null to skip rendering the entire component
+  return null;
 };
 
 export default Terms;

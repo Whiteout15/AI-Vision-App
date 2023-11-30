@@ -19,6 +19,8 @@ import {
 } from "@ionic/react";
 import { eyeOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
+import Header from "../components/Header/Header";
+import "./TestConfig.css";
 
 const TestConfig: React.FC = () => {
   const history = useHistory();
@@ -46,14 +48,12 @@ const TestConfig: React.FC = () => {
     // <IonPage id="container">
 
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Personal Configuration</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <Header headerText="Personal Configuration"/>
       <IonContent>
         <IonItem onClick={() => setShowDatePicker(true)}>
-          <IonLabel position="stacked">What is your birth year?</IonLabel>
+          <IonLabel position="stacked">
+            <h1 className="question">What is your birth year?</h1>
+          </IonLabel>
           <IonInput
             readonly
             value={
@@ -62,9 +62,10 @@ const TestConfig: React.FC = () => {
             placeholder="Select Birth Year"
           />
         </IonItem>
-
         <IonItem>
-          <IonLabel position="stacked">Do you wear glasses?</IonLabel>
+          <IonLabel position="stacked">
+            <h1 className="question">Do you wear glasses?</h1>
+          </IonLabel>
           <IonSelect
             value={wearGlasses}
             placeholder="Select Yes or No"
@@ -76,7 +77,9 @@ const TestConfig: React.FC = () => {
         </IonItem>
 
         <IonItem>
-          <IonLabel position="stacked">Which eye will you be testing?</IonLabel>
+          <IonLabel position="stacked">
+            <h1 className="question">Which eye will you be testing?</h1>
+          </IonLabel>
           <IonSelect
             value={eyeToExamine}
             placeholder="Select an eye"

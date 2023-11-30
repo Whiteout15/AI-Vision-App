@@ -28,6 +28,8 @@ import Sample from "./components/PreTest";
 import SampleTest from "./components/PreTest";
 import PreTest from "./components/PreTest";
 import CameraPage from "./pages/CameraPage";
+import VisionTest from "./pages/VisionTest";
+import Results from "./pages/Results";
 
 setupIonicReact();
 
@@ -45,6 +47,8 @@ const App: React.FC = () => (
         <Route path="/TestConfig" component={TestConfig} exact />
         <Route path="/Test" component={Test} exact />
         <Route path="/CameraPage" component={CameraPage} exact />
+        <Route path="/VisionTest" component={VisionTest} exact />
+        <Route path="/Results" component={Results} exact />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
