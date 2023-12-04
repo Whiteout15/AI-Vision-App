@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  IonPage,
-  IonButton,
-  IonIcon,
-  IonContent,
-  IonHeader,
-  IonTitle,
-  IonToolbar,
-} from "@ionic/react";
+import { IonPage, IonButton, IonIcon, IonContent } from "@ionic/react";
 
 import { eyeOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
@@ -26,7 +18,7 @@ const CameraPage: React.FC = () => {
 
   return (
     <IonPage>
-      <Header headerText="Distance Calculations"/>
+      <Header headerText="Distance Calculations" />
       <IonContent fullscreen>
         <PreTest />
       </IonContent>

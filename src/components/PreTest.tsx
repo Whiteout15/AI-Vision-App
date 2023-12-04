@@ -1,11 +1,10 @@
 import { FaceMesh } from "@mediapipe/face_mesh";
-import * as Facemesh from "@mediapipe/face_mesh";
+
 import * as cam from "@mediapipe/camera_utils";
 import Webcam from "react-webcam";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./Pretest.css";
-import Header from "./Header/Header";
 
 const PreTest: React.FC = () => {
   const history = useHistory();
@@ -136,8 +135,8 @@ const PreTest: React.FC = () => {
             knownWidthMm
           );
           // Convert the distance to inches
-          const distanceFromWebcamInches = distanceFromWebcamMm / 25.4;        
-          
+          const distanceFromWebcamInches = distanceFromWebcamMm / 25.4;
+
           canvasCtx.font = "30px Arial";
           canvasCtx.fillStyle = "black";
           canvasCtx.save(); // Save the current state
@@ -216,22 +215,8 @@ const PreTest: React.FC = () => {
 
   return (
     <div className="PreTest">
-      <Webcam
-      className="webcam"
-        hidden={true}
-        ref={webcamRef}
-        style={{
-          
-        }}
-      />
-      <canvas
-      className="webcam-canvas"
-        ref={canvasRef}
-        style={{
-         
-        }}
-      ></canvas>
-
+      <Webcam className="webcam" hidden={true} ref={webcamRef} />
+      <canvas className="webcam-canvas" ref={canvasRef}></canvas>
     </div>
   );
 };
