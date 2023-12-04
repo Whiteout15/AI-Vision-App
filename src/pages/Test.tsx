@@ -4,12 +4,14 @@ import { eyeOutline } from "ionicons/icons";
 import * as vision from "@mediapipe/tasks-vision";
 import SampleTest from "../components/PreTest";
 import { useHistory } from "react-router-dom";
+import Header from "../components/Header/Header";
+import "./Test.css"
 
 const Test: React.FC = () => {
   const history = useHistory();
 
   const goToSampleTest = () => {
-    history.push("./VisionTest");
+    history.push("./CameraPage");
   };
 
   const webcamRef = useRef<HTMLVideoElement>(null);
@@ -133,14 +135,23 @@ const Test: React.FC = () => {
     // <IonPage id="container">
 
     <IonPage>
-      <IonContent>
-        <p>
-          Hold your face in front of your webcam to get real-time face
-          landmarker detection. <br />
-          Click <b>enable webcam</b> below and grant access to the webcam if
-          prompted. Face should be parallel/level with camera and environment
-          should be well lit.{" "}
-        </p>
+      <Header headerText="Instructions"/>
+      <IonContent fullscreen className="ion-padding">
+        <div className="instructions-container">
+          <p className="instructions-text">
+            Hold your face in front of your webcam to get real-time face
+            landmarker detection. <br />
+            <br />
+            Click <b>Enable Webcam</b> below and grant access to the webcam if
+            prompted. Face should be parallel/level with camera and environment
+            should be well lit.{" "}
+            <br /><br />
+            If you are testing one eye, cover the eye that is not being tested.
+            <br /><br />
+            Wear glasses if you are looking to see if you need a new prescription.
+          </p>
+        </div>
+       
         <div id="liveView" className="videoView">
           <IonButton id="webcamButton" onClick={enableCam}>
             {webcamRunning ? "DISABLE WEBCAM" : "ENABLE WEBCAM"}
@@ -158,10 +169,12 @@ const Test: React.FC = () => {
               style={{ position: "absolute", left: 0, top: 0 }}
             ></canvas>
           </div>
-          <IonButton onClick={goToSampleTest}>
-            Continue to faceMesh test
+          <div className="button-container">
+          <button className="instructions-button" onClick={goToSampleTest}>
+            <h1>Continue</h1>
             <IonIcon slot="end" icon={eyeOutline}></IonIcon>
-          </IonButton>
+          </button>
+          </div>
         </div>
       </IonContent>
     </IonPage>

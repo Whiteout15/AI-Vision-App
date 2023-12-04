@@ -21,7 +21,7 @@ const CameraPage: React.FC = () => {
   const history = useHistory();
 
   const continueToExam = () => {
-    history.push("/Test"); // Ensure the route is correct
+    history.push("/VisionTest"); // Ensure the route is correct
   };
 
   return (

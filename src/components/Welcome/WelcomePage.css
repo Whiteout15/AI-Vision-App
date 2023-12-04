@@ -39,12 +39,13 @@
 .app-description {
   padding-left: 32px;
   padding-right: 32px;
-  padding-bottom: 30px;
+  /* padding-bottom: 30px; */
 }
 
 .button-container {
   display: flex;
   justify-content: center;
+  padding-top: 30px;
 }
 
 .home-button {

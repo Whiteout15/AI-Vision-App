@@ -5,9 +5,11 @@ import {
   IonPage,
   IonButton,
   IonText,
+  IonIcon,
 } from "@ionic/react";
 import Header from "../components/Header/Header";
 import "./Results.css";
+import { eyeOutline } from "ionicons/icons";
 
 
 
@@ -29,10 +31,17 @@ const Results: React.FC = () => {
   return (
     <IonPage>
       <Header headerText="Results" />
-
-      <IonText>Hello</IonText>
-
       <IonContent className="ion-padding">
+        <h1>Eye Tested: </h1>
+        <h1>Eye Strength: </h1>
+
+        <div className="result-button-container">
+          <button className="result-button">
+            <h1>Save as Image</h1>
+            <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+          </button>
+        </div>
+
 
       </IonContent>
     </IonPage>

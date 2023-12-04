@@ -20,26 +20,22 @@ import {
 import { eyeOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header/Header";
+import Button from "../components/Button/Button";
 import "./TestConfig.css";
 
 const TestConfig: React.FC = () => {
   const history = useHistory();
-  const [birthYear, setBirthYear] = useState("");
+  const [testMode, setTestMode] = useState("");
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [wearGlasses, setWearGlasses] = useState<string>("");
   const [eyeToExamine, setEyeToExamine] = useState<string>("");
   const [showAlert, setShowAlert] = useState(false);
 
-  const handleBirthYearChange = (e: CustomEvent) => {
-    setBirthYear(e.detail.value.split("T")[0]);
-    setShowDatePicker(false);
-  };
-
   const continueToPreTest = () => {
-    if (!birthYear || !wearGlasses || !eyeToExamine) {
+    if (!testMode || !wearGlasses || !eyeToExamine) {
       setShowAlert(true);
     } else {
-      history.push("/CameraPage"); // Ensure the route is correct
+      history.push("/Test"); // Ensure the route is correct
     }
   };
 
@@ -50,7 +46,20 @@ const TestConfig: React.FC = () => {
     <IonPage>
       <Header headerText="Personal Configuration"/>
       <IonContent>
-        <IonItem onClick={() => setShowDatePicker(true)}>
+      <IonItem>
+          <IonLabel position="stacked">
+            <h1 className="question">Alphanumerical or Images?</h1>
+          </IonLabel>
+          <IonSelect
+            value={testMode}
+            placeholder="Select Letters or Images"
+            onIonChange={(e) => setTestMode(e.detail.value)}
+          >
+            <IonSelectOption value="Letters">Alphanumerical</IonSelectOption>
+            <IonSelectOption value="Images">Images</IonSelectOption>
+          </IonSelect>
+        </IonItem>
+        {/* <IonItem onClick={() => setShowDatePicker(true)}>
           <IonLabel position="stacked">
             <h1 className="question">What is your birth year?</h1>
           </IonLabel>
@@ -61,7 +70,7 @@ const TestConfig: React.FC = () => {
             }
             placeholder="Select Birth Year"
           />
-        </IonItem>
+        </IonItem> */}
         <IonItem>
           <IonLabel position="stacked">
             <h1 className="question">Do you wear glasses?</h1>
@@ -90,8 +99,9 @@ const TestConfig: React.FC = () => {
             <IonSelectOption value="Both">Both</IonSelectOption>
           </IonSelect>
         </IonItem>
+        <Button buttonText="Continue" onClickAction={continueToPreTest} />
 
-        <IonModal
+        {/* <IonModal
           isOpen={showDatePicker}
           onDidDismiss={() => setShowDatePicker(false)}
         >
@@ -100,7 +110,7 @@ const TestConfig: React.FC = () => {
             onIonChange={handleBirthYearChange}
           />
           <IonButton onClick={() => setShowDatePicker(false)}>Done</IonButton>
-        </IonModal>
+        </IonModal> */}
         <IonAlert
           isOpen={showAlert}
           onDidDismiss={() => setShowAlert(false)}
@@ -109,11 +119,7 @@ const TestConfig: React.FC = () => {
           buttons={["OK"]}
         />
       </IonContent>
-
-      <IonButton onClick={continueToPreTest}>
-        Continue
-        <IonIcon slot="end" icon={eyeOutline}></IonIcon>
-      </IonButton>
+      
     </IonPage>
   );
 };

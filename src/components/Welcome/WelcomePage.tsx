@@ -11,6 +11,7 @@ import {
 import { eyeOutline } from "ionicons/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
+import Button from "../Button/Button";
 
 interface ContainerProps {}
 
@@ -24,20 +25,16 @@ const WelcomePage: React.FC<ContainerProps> = () => {
   return (
     <IonPage id="container">
       <body className="container">
-        <h1 className="title">Welcome to the VisionAI App</h1>
+        <h1 className="title">Welcome to the VisionAI Test</h1>
         <div>
           <p className="app-description">
             An Artificial Intelligence Based Near Vision Tester. Providing
             accurate and reliable at home vision testing.
           </p>
         </div>
-        <div className="button-container">
-          <button className="home-button" onClick={goToTermsPage}>
-            <h1>Continue</h1>
-            <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
-          </button>
-        </div>
+        <Button buttonText="Continue" onClickAction={() => "./Terms"}/>
       </body>
+      
     </IonPage>
   );
 };

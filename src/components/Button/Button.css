@@ -1,9 +1,9 @@
-.result-button-container {
+.button-container {
     display: flex;
     justify-content: center;
-  }
-
-.result-button {
+}
+  
+.button {
     background-color: #000;
     color: #FFF;
     padding: 10px;
@@ -11,8 +11,8 @@
     align-items: center;
     justify-content: center;
 }
-
-.result-button h1 {
+  
+.button h1 {
     font-weight: bold;
     font-size: 40px;
     margin-right: 10px;
@@ -20,6 +20,6 @@
     margin-bottom: 0;
 }
   
-  .home-button .eye {
+.button .eye {
     margin-left: auto;
-  }
+}

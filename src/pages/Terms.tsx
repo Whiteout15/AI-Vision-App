@@ -4,6 +4,7 @@ import { eyeOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header/Header";
 import "./Terms.css";
+import Button from "../components/Button/Button";
 
 const Terms: React.FC = () => {
   const history = useHistory();
@@ -16,7 +17,7 @@ const Terms: React.FC = () => {
 
     // If it's not the first launch, navigate to the next page
     if (!isFirstLaunch) {
-      history.push("/TestConfig");
+      history.push("./TestConfig");
     }
   }, [history]);
 
@@ -28,7 +29,7 @@ const Terms: React.FC = () => {
     if (isChecked) {
       // Set the first launch flag in localStorage and navigate to the next page
       localStorage.setItem("firstLaunch", "false");
-      history.push("/TestConfig");
+      history.push("./TestConfig");
     } else {
       setShowAlert(true);
     }
@@ -62,17 +63,8 @@ const Terms: React.FC = () => {
               <input type="checkbox" className="checkbox" checked={isChecked} onChange={handleCheckboxChange} />
             </label>
           </div>
-          <div className="button-container">
-          <button className="home-button" onClick={continueToConfig}>
-            <h1>Continue</h1>
-            <IonIcon
-              className="eye"
-              slot="end"
-              size="large"
-              icon={eyeOutline}
-            ></IonIcon>
-          </button>
-        </div>
+
+          <Button buttonText="Continue" onClickAction={continueToConfig} />
 
           <IonAlert
             isOpen={showAlert}
