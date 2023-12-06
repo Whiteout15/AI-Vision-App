@@ -5,13 +5,14 @@ import * as vision from "@mediapipe/tasks-vision";
 import SampleTest from "../components/PreTest";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header/Header";
+import Button from "../components/Button/Button";
 import "./Test.css"
 
 const Test: React.FC = () => {
   const history = useHistory();
 
   const goToSampleTest = () => {
-    history.push("./CameraPage");
+    history.push("/CameraPage");
   };
 
   const webcamRef = useRef<HTMLVideoElement>(null);
@@ -136,6 +137,7 @@ const Test: React.FC = () => {
 
     <IonPage>
       <Header headerText="Instructions"/>
+      
       <IonContent fullscreen className="ion-padding">
         <div className="instructions-container">
           <p className="instructions-text">
@@ -149,13 +151,19 @@ const Test: React.FC = () => {
             If you are testing one eye, cover the eye that is not being tested.
             <br /><br />
             Wear glasses if you are looking to see if you need a new prescription.
+            <br /><br />
+            You will be prompted with one letter at a time. Say the letter and wait for the results.
+            <br /><br />
+            Ensure you are 14 inches away from the camera for correct testing conditions.
+            <br /><br />
           </p>
         </div>
+        <Button buttonText="Continue" onClickAction={goToSampleTest}/>
        
         <div id="liveView" className="videoView">
-          <IonButton id="webcamButton" onClick={enableCam}>
+          {/* <IonButton id="webcamButton" onClick={enableCam}>
             {webcamRunning ? "DISABLE WEBCAM" : "ENABLE WEBCAM"}
-          </IonButton>
+          </IonButton> */}
           <div style={{ position: "relative" }}>
             <video
               ref={webcamRef}
@@ -169,13 +177,8 @@ const Test: React.FC = () => {
               style={{ position: "absolute", left: 0, top: 0 }}
             ></canvas>
           </div>
-          <div className="button-container">
-          <button className="instructions-button" onClick={goToSampleTest}>
-            <h1>Continue</h1>
-            <IonIcon slot="end" icon={eyeOutline}></IonIcon>
-          </button>
-          </div>
         </div>
+        
       </IonContent>
     </IonPage>
   );

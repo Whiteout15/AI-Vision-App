@@ -52,7 +52,7 @@ const TestConfig: React.FC = () => {
           </IonLabel>
           <IonSelect
             value={testMode}
-            placeholder="Select Letters or Images"
+            placeholder="Select Alphanumerical or Images"
             onIonChange={(e) => setTestMode(e.detail.value)}
           >
             <IonSelectOption value="Letters">Alphanumerical</IonSelectOption>
@@ -99,6 +99,7 @@ const TestConfig: React.FC = () => {
             <IonSelectOption value="Both">Both</IonSelectOption>
           </IonSelect>
         </IonItem>
+        <div className="padding"></div>
         <Button buttonText="Continue" onClickAction={continueToPreTest} />
 
         {/* <IonModal

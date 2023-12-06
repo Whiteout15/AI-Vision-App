@@ -32,7 +32,7 @@ const WelcomePage: React.FC<ContainerProps> = () => {
             accurate and reliable at home vision testing.
           </p>
         </div>
-        <Button buttonText="Continue" onClickAction={() => "./Terms"}/>
+        <Button buttonText="Continue" onClickAction={goToTermsPage}/>
       </body>
       
     </IonPage>

@@ -32,6 +32,26 @@
     letter-spacing: 30px;
     margin-right: -30px;
   }
+
+  .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ion-content-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around; /* Adjust as needed, e.g., space-between, space-evenly */
+    align-items: center; /* Align items vertically */
+  }
+
+  .testImages {
+    margin: 0 2.5px; /* Add some margin between images */
+    font-size: 60px; /* Apply the font size here */
+  }
+
+ 
   
   .buttonContainer {
     flex-direction: column;

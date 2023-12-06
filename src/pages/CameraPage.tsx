@@ -7,7 +7,9 @@ import { useHistory } from "react-router-dom";
 import "./Terms.css";
 import PreTest from "../components/PreTest";
 import "./Home.css";
+import "./CameraPage.css"
 import Header from "../components/Header/Header";
+import Button from "../components/Button/Button";
 
 const CameraPage: React.FC = () => {
   const history = useHistory();
@@ -21,11 +23,9 @@ const CameraPage: React.FC = () => {
       <Header headerText="Distance Calculations" />
       <IonContent fullscreen>
         <PreTest />
+        <Button buttonText="Continue" onClickAction={continueToExam} />        
       </IonContent>
-      <IonButton onClick={continueToExam}>
-        Continue
-        <IonIcon slot="end" icon={eyeOutline}></IonIcon>
-      </IonButton>
+      
     </IonPage>
   );
 };

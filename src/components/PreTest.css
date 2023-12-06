@@ -1,7 +1,7 @@
 .PreTest {
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   height: 100%; /* This ensures the container takes up the full height of the viewport */
 }
 
@@ -11,8 +11,8 @@
 }
 
 .webcam-canvas {
-  width: 100%; /* Make the canvas fill the container */
-  height: 100%; /* Make the canvas fill the container */
+  /* width: 100%;  */
+  height: 90%; /* Make the canvas fill the container */
 }
 
 .canvas-style {

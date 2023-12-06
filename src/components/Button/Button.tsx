@@ -32,7 +32,7 @@ import {
     return (
           <div className="button-container">
             <button className="button" onClick={handleClick}>
-              <h1>Continue</h1>
+              <h1>{buttonText}</h1>
               <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
             </button>
           </div>

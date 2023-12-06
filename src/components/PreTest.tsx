@@ -145,7 +145,7 @@ const PreTest: React.FC = () => {
           canvasCtx.translate(-canvasElement.width, 0);
 
           // // Calculate the position for the rectangle and clear it
-          const margin = 0; // Margin from the edge
+          const margin = 186; // Margin from the edge
           const rectWidth = 280;
           const rectX = canvasElement.width - rectWidth - margin; // X position for rectangle
           canvasCtx.clearRect(rectX, 0, rectWidth, 40);
@@ -158,7 +158,7 @@ const PreTest: React.FC = () => {
 
           canvasCtx.fillText(
             `Distance: ${distanceFromWebcamInches.toFixed(0)} inches`,
-            10,
+            188,
             30
           );
           canvasCtx.restore();
@@ -218,6 +218,7 @@ const PreTest: React.FC = () => {
       <Webcam className="webcam" hidden={true} ref={webcamRef} />
       <canvas className="webcam-canvas" ref={canvasRef}></canvas>
     </div>
+    
   );
 };
 

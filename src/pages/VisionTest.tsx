@@ -21,15 +21,36 @@ import { FaSailboat } from "react-icons/fa6";
 import { FaCarSide } from "react-icons/fa";
 
 
-import "./VisionTest.css"
+import "./VisionTest.css";
+
+const iconMap = {
+  home: <IonIcon name="home-outline" />,
+  flower: <IonIcon name="flower-outline" />,
+  butterfly: <PiButterflyLight />,
+  umbrella: <IonIcon name="umbrella-outline" />,
+  apple: <CiApple />,
+  dog: <GiSittingDog />,
+  bird: <PiBirdBold />,
+  cat: <FaCat />,
+  horse: <FaHorse />,
+  train: <WiTrain />,
+  sailboat: <FaSailboat />,
+  car: <FaCarSide />,
+};
+
+const icons = Object.values(iconMap);
 
 const generateRandomString = () => {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
-  let randomString = "";
+  let randomString = [];
+  let usedIndices = new Set();
 
-  for (let i = 0; i < 5; i++) {
+  while (randomString.length < 5) {
     const randomIndex = Math.floor(Math.random() * alphabet.length);
-    randomString += alphabet[randomIndex];
+    if (!usedIndices.has(randomIndex)) {
+      usedIndices.add(randomIndex);
+      randomString.push({ letter: alphabet[randomIndex], recognized: false });
+    }
   }
 
   return randomString;
@@ -40,6 +61,62 @@ const VisionTest: React.FC = () => {
   const [randomString, setRandomString] = useState(generateRandomString());
   const [buttonPressCount, setButtonPressCount] = useState(0);
   const [fontSize, setFontSize] = useState(70);
+  const [recognition, setRecognition] = useState(null);
+  const [isListening, setIsListening] = useState(false);
+  const [iconsToShow, setIconsToShow] = useState(shuffleArray(icons).slice(0, 5));
+
+  useEffect(() => {
+    if ("webkitSpeechRecognition" in window) {
+      const webkitRecognition = new window.webkitSpeechRecognition();
+      const speechRecognitionList = new window.webkitSpeechGrammarList();
+      const grammar =
+        "#JSGF V1.0; grammar lettersAndNumbers; public <letterOrNumber> = (A | B | C | D | ... | Z | 0 | 1 | 2 | ... | 9);";
+      speechRecognitionList.addFromString(grammar, 1);
+
+      webkitRecognition.grammars = speechRecognitionList;
+      webkitRecognition.maxAlternatives = 1;
+      webkitRecognition.continuous = true;
+      webkitRecognition.interimResults = true;
+      webkitRecognition.lang = "en-US";
+
+      webkitRecognition.onresult = (event) => {
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          const transcript = event.results[i][0].transcript
+            .trim()
+            .toUpperCase();
+          console.log("Transcript:", transcript); // Log everything picked up by the microphone
+
+          // Check if the recognized transcript matches any character in randomString
+          setRandomString((currentString) =>
+            currentString.map((obj) =>
+              obj.letter === transcript ? { ...obj, recognized: true } : obj
+            )
+          );
+        }
+      };
+
+      setRecognition(webkitRecognition);
+    } else {
+      alert(
+        "Your browser does not support the Web Speech API. Please use Chrome or Safari."
+      );
+    }
+  }, []);
+
+  const startListening = () => {
+    if (recognition) {
+      recognition.start();
+      setIsListening(true);
+    }
+  };
+
+  const stopListening = () => {
+    if (recognition) {
+      recognition.stop();
+      setIsListening(false);
+    }
+  };
+  
 
   const increaseFontSize = () => {
     setFontSize(fontSize + 2);
@@ -49,26 +126,61 @@ const VisionTest: React.FC = () => {
     setFontSize(fontSize - 2);
   };
 
-  const updateRandomString = () => {
+  const updateRandomIcons = () => {
     const newCount = buttonPressCount + 1;
     setButtonPressCount(newCount);
 
     if (newCount === 6) {
-        history.push("./Results");
-      
+      history.push("./Results");
     } else {
       setRandomString(generateRandomString());
+      const shuffledIcons = shuffleArray(icons);
+      setIconsToShow(shuffledIcons.slice(0, 5));
     }
   };
+
+  function shuffleArray<T>(array: T[]): T[] {
+    const shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+    return shuffledArray;
+  }
 
   return (
     <IonPage>
       <Header headerText="Vision Test" />
 
       <IonContent className="ion-padding">
-      <IonText className="testText" style={{ fontSize: fontSize }}>
-  {randomString}
-</IonText>
+        <IonText className="testText" style={{ fontSize: fontSize }}>
+        {randomString.map((obj, index) => (
+            <span
+              key={index}
+              style={{ color: obj.recognized ? "green" : "black" }}
+            >
+              {obj.letter}
+            </span>
+          ))}
+        </IonText>
+
+        <div className="imageContainer">
+          {iconsToShow.map((icon, index) => (
+            <IonText key={index} className="testImages" style={{ fontSize: fontSize }}>
+              {icon}
+            </IonText>
+          ))}
+        </div>
+
+        <IonButton onClick={startListening} disabled={isListening}>
+          Start Speech Recognition
+        </IonButton>
+        <IonButton onClick={stopListening} disabled={!isListening}>
+          Stop Speech Recognition
+        </IonButton>
 
         <IonButton expand="full" onClick={increaseFontSize}>
           Increase Font Size
@@ -78,25 +190,13 @@ const VisionTest: React.FC = () => {
           Decrease Font Size
         </IonButton>
 
-        <IonButton expand="full" onClick={updateRandomString}>
+        <IonButton expand="full" onClick={updateRandomIcons}>
           Next
         </IonButton>
 
         <IonText style={{ textAlign: "center" }}>
           Vision Test: {buttonPressCount}/5
         </IonText>
-        <IonIcon name="home-outline"></IonIcon>
-        <IonIcon name="flower-outline"></IonIcon>
-        <PiButterflyLight />
-        <IonIcon name="umbrella-outline"></IonIcon>
-        <CiApple />
-        <GiSittingDog />
-        <PiBirdBold />
-        <FaCat />
-        <FaHorse />
-        <WiTrain />
-        <FaSailboat />
-        <FaCarSide />
       </IonContent>
     </IonPage>
   );
