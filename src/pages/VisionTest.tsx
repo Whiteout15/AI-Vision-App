@@ -8,12 +8,8 @@ import { CiApple } from "react-icons/ci";
 import { GiSittingDog } from "react-icons/gi";
 import { PiBirdBold } from "react-icons/pi";
 import { FaCat, FaHorse, FaCarSide } from "react-icons/fa";
-import { WiTrain } from "react-icons/wi";
-<<<<<<< HEAD
 import { FaSailboat } from "react-icons/fa6";
-import { FaCarSide } from "react-icons/fa";
-
-
+import { WiTrain } from "react-icons/wi";
 import "./VisionTest.css";
 
 const iconMap = {
@@ -32,9 +28,6 @@ const iconMap = {
 };
 
 const icons = Object.values(iconMap);
-=======
-import "./VisionTest.css";
->>>>>>> d62143e74f41667a7297cbe9574a2e3e85fe659e
 
 const generateRandomString = () => {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
@@ -59,10 +52,7 @@ const VisionTest: React.FC = () => {
   const [fontSize, setFontSize] = useState(70);
   const [recognition, setRecognition] = useState(null);
   const [isListening, setIsListening] = useState(false);
-<<<<<<< HEAD
   const [iconsToShow, setIconsToShow] = useState(shuffleArray(icons).slice(0, 5));
-=======
->>>>>>> d62143e74f41667a7297cbe9574a2e3e85fe659e
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
@@ -115,11 +105,6 @@ const VisionTest: React.FC = () => {
       setIsListening(false);
     }
   };
-<<<<<<< HEAD
-  
-=======
->>>>>>> d62143e74f41667a7297cbe9574a2e3e85fe659e
-
   const increaseFontSize = () => {
     setFontSize(fontSize + 2);
   };
@@ -158,11 +143,7 @@ const VisionTest: React.FC = () => {
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding">
         <IonText className="testText" style={{ fontSize: fontSize }}>
-<<<<<<< HEAD
         {randomString.map((obj, index) => (
-=======
-          {randomString.map((obj, index) => (
->>>>>>> d62143e74f41667a7297cbe9574a2e3e85fe659e
             <span
               key={index}
               style={{ color: obj.recognized ? "green" : "black" }}
@@ -171,7 +152,6 @@ const VisionTest: React.FC = () => {
             </span>
           ))}
         </IonText>
-<<<<<<< HEAD
 
         <div className="imageContainer">
           {iconsToShow.map((icon, index) => (
@@ -181,49 +161,25 @@ const VisionTest: React.FC = () => {
           ))}
         </div>
 
-=======
->>>>>>> d62143e74f41667a7297cbe9574a2e3e85fe659e
         <IonButton onClick={startListening} disabled={isListening}>
           Start Speech Recognition
         </IonButton>
         <IonButton onClick={stopListening} disabled={!isListening}>
           Stop Speech Recognition
         </IonButton>
-<<<<<<< HEAD
-
-=======
->>>>>>> d62143e74f41667a7297cbe9574a2e3e85fe659e
         <IonButton expand="full" onClick={increaseFontSize}>
           Increase Font Size
         </IonButton>
         <IonButton expand="full" onClick={decreaseFontSize}>
           Decrease Font Size
         </IonButton>
-<<<<<<< HEAD
 
         <IonButton expand="full" onClick={updateRandomIcons}>
-=======
-        <IonButton expand="full" onClick={updateRandomString}>
->>>>>>> d62143e74f41667a7297cbe9574a2e3e85fe659e
           Next
         </IonButton>
         <IonText style={{ textAlign: "center" }}>
           Vision Test: {buttonPressCount}/5
         </IonText>
-<<<<<<< HEAD
-=======
-        <IonIcon name="home-outline"></IonIcon>
-        <IonIcon name="flower-outline"></IonIcon>
-        <PiButterflyLight />
-        <IonIcon name="umbrella-outline"></IonIcon>
-        <CiApple />
-        <GiSittingDog />
-        <PiBirdBold />
-        <FaCat />
-        <FaHorse />
-        <WiTrain />
-        <FaCarSide />
->>>>>>> d62143e74f41667a7297cbe9574a2e3e85fe659e
       </IonContent>
     </IonPage>
   );
