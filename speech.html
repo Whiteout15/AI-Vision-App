@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Speech Recognition</title>
+
+</head>
+
+<body>
+    <h1>Vision Eye Exam</h1>
+    <button  id="start-btn" >Start Speech Recognition</button>
+
+
+<script>
+    // Check if the browser supports the Web Speech API
+    if ('webkitSpeechRecognition' in window) {
+        const recognition = new webkitSpeechRecognition();
+        const speechRecognitionList = new webkitSpeechGrammarList();  
+        console.log(speechRecognitionList);
+// Define a simple grammar that includes a list of single letters and numbers.
+        const grammar = '#JSGF V1.0; grammar lettersAndNumbers; public <letterOrNumber> = (A | B | C | D | ... | Z | 0 | 1 | 2 | ... | 9);';
+// Add our grammar to the speech recognition list
+        speechRecognitionList.addFromString(grammar, 1);
+
+
+//TODO - ACCESSIBILITY - Choose a language? Alternative for spanish?
+        // Set properties - continuous listening, show interim results, set language, set grammar
+        recognition.grammars = speechRecognitionList;
+        recognition.maxAlternatives = 1;
+
+        recognition.continuous = true; // Keep listening even after getting a result
+        recognition.interimResults = true; // Show interim results - print output to screen
+        recognition.lang = 'en-US'; // Set language
+
+// function aims to display only single alphanumeric characters. 
+//It trims and converts the result to uppercase, then checks if the result is exactly one character long and matches a letter or number. 
+//If it does, it updates the transcript with this single valid character.
+//function bounds oputput - tests to check if single character can be returned
+    //only grab single letter or number input (alphanumeric)
+    //Result stores the last voice input instance. 
+    //result is stored to valid input only if result is a single character and is a letter or number
+    //valid input is printed to the screen.availHeight
+//TODO - FOR VISION TEST - Check validResult against char array to determine if user input is correct
+ // Define what to do when speech is detected
+
+ recognition.onresult = function(event) {
+            let last = event.results.length - 1;
+            let result = event.results[last][0].transcript.trim().toUpperCase();
+            let validInput;
+            // Check if the result is a single character and is a letter or number
+            console.log(result)
+            if (result.length === 1 && /[A-Z0-9]/.test(result)) {
+                validInput = result;
+                document.getElementById('transcript').textContent = validInput;
+                console.log(validInput);
+            }
+        };
+
+    // Request permission and start continuous speech recognition on button click
+        document.getElementById('start-btn').onclick = function() {
+            recognition.start();
+        };
+     
+//if failed to load Web Speech Api, alert user of compatibility issue
+    } else {
+        alert('Your browser or mobile device does not support the Web Speech API, Please try using chrome or safari.');
+    }
+
+// functions below handle what happens when speech is detected - Attempts at binding I/O to alphanumeric characters
+        //         recognition.onresult = function(event) {
+            //         // Only act on single results, which should be single characters
+            //         let result = event.results[0][0].transcript.trim().toUpperCase();
+            //         if (result.length === 1) {
+            //             document.getElementById('transcript').textContent = result;
+            //         }
+            //     };
+            //         // Start the speech recognition
+            //     document.getElementById('start-btn').onclick = function() {
+            //         recognition.start();
+            //     };
+            // } else {
+            //     alert('Your browser does not support the Web Speech API');
+            // }
+//This function appends all the recognized speech results into a single string without filtering.
+        // recognition.onresult = function(event) {
+        //     let transcript = '';
+        //     for (let i = event.resultIndex; i < event.results.length; ++i) {
+        //         transcript += event.results[i][0].transcript;
+        //     }
+        //     document.getElementById('transcript').textContent = transcript;
+        // };
+
+//function that attemopts to filter out non-alphanumeric characters  
+//This function attempts to filter the recognized string to include only alphanumeric characters (letters and numbers). 
+//It takes the latest result and removes any characters that are not letters or numbers.
+            // recognition.onresult = function(event) {
+            //     let last = event.results.length - 1;
+            //     let result = event.results[last][0].transcript.toUpperCase();
+
+            //     // Filter the result to include only letters and numbers
+            //     let filteredResult = result.split('').filter(char => /[A-Z0-9]/.test(char)).join('');
+
+            //     document.getElementById('transcript').textContent = filteredResult;
+            // };
+
+//test to check if alphanumeric bounds can be placed on input
+//This function looks for the first valid alphanumeric character in the latest result and updates the transcript only if such a character is found.
+        // recognition.onresult = function(event) {
+        //     let last = event.results.length - 1;
+        //     let result = event.results[last][0].transcript.toUpperCase();
+
+        //     // Find the first letter or number in the result
+        //     let firstValidChar = result.split('').find(char => /[A-Z0-9]/.test(char));
+
+        //     // Update the transcript only if a valid character is found
+        //     if (firstValidChar) {
+        //         document.getElementById('transcript').textContent = firstValidChar;
+        //     }
+        // };
+
+// function iterates through each recognized piece of speech and checks each one for being a single alphanumeric character. 
+//When it finds such a result, it stops the recognition service and updates the transcript with the valid character.
+    // recognition.onresult = function(event) {
+    //     let last = event.results.length - 1;
+
+    //     for (let i = event.resultIndex; i <= last; ++i) {
+    //         let result = event.results[i][0].transcript.trim().toUpperCase();
+
+    //         // Check if the result is a single character and is a letter or number
+    //         if (result.length === 1 && /[A-Z0-9]/.test(result)) {
+    //             recognition.stop(); // Stop recognition after a valid input
+    //             document.getElementById('transcript').textContent = result;
+    //             break; // Break the loop after a valid input
+    //         }
+    //     }
+    // };
+</script>
+    <p id="transcript">Say a letter or a number...</p>
+</body>
+</html>
