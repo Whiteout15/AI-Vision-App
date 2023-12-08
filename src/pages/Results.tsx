@@ -26,7 +26,7 @@ const Results: React.FC = () => {
   return (
     <IonPage>
       <Header headerText="Results" />
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding" scrollY={false}>
         <h1>Test Mode: {testMode} </h1>
         <h1>Eye Tested: {eyeToExamine} </h1>
         <h1>Eye Strength: </h1>

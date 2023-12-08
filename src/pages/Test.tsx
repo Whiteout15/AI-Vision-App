@@ -147,7 +147,7 @@ const Test: React.FC = () => {
     <IonPage>
       <Header headerText="Instructions"/>
       
-      <IonContent fullscreen className="ion-padding">
+      <IonContent fullscreen className="ion-padding" scrollY={false}>
         <div className="instructions-container">
           <p className="instructions-text">
             Hold your face in front of your webcam to get real-time face
