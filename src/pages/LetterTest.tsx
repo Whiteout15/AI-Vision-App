@@ -77,19 +77,6 @@ const LetterTest: React.FC = () => {
     }
   }, []);
 
-  const startListening = () => {
-    if (recognition) {
-      recognition.start();
-      setIsListening(true);
-    }
-  };
-
-  const stopListening = () => {
-    if (recognition) {
-      recognition.stop();
-      setIsListening(false);
-    }
-  };
   const increaseFontSize = () => {
     setFontSize(fontSize + 2);
   };
@@ -115,6 +102,17 @@ const LetterTest: React.FC = () => {
     history.push("./Results", { testMode, eyeToExamine });
   };
 
+  const toggleListening = () => {
+    if (recognition) {
+      if (isListening) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+      setIsListening(!isListening);
+    }
+  };
+
   return (
     <IonPage>
       <Header headerText="Vision Test" />
@@ -130,11 +128,8 @@ const LetterTest: React.FC = () => {
           ))}
         </IonText>
 
-        <IonButton onClick={startListening} disabled={isListening}>
-          Start Speech Recognition
-        </IonButton>
-        <IonButton onClick={stopListening} disabled={!isListening}>
-          Stop Speech Recognition
+        <IonButton expand="full" onClick={toggleListening}>
+          {isListening ? "Stop Speech Recognition" : "Start Speech Recognition"}
         </IonButton>
         <IonButton expand="full" onClick={increaseFontSize}>
           Increase Font Size
@@ -146,6 +141,7 @@ const LetterTest: React.FC = () => {
         <div className="test-button">
           <Button buttonText="Next" onClickAction={updateRandomIcons} />
         </div>
+
         <div className="test-button">
           <Button buttonText="End Test" onClickAction={endTest} />
         </div>

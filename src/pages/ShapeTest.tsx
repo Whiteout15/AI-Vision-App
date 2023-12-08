@@ -91,17 +91,14 @@ const ShapeTest: React.FC = () => {
 
   const isKeywordRecognized = (keyword) => recognizedKeywords.has(keyword);
 
-  const startListening = () => {
+  const toggleListening = () => {
     if (recognition) {
-      recognition.start();
-      setIsListening(true);
-    }
-  };
-
-  const stopListening = () => {
-    if (recognition) {
-      recognition.stop();
-      setIsListening(false);
+      if (isListening) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+      setIsListening(!isListening);
     }
   };
 
@@ -152,11 +149,8 @@ const ShapeTest: React.FC = () => {
             </IonText>
           ))}
         </div>
-        <IonButton onClick={startListening} disabled={isListening}>
-          Start Speech Recognition
-        </IonButton>
-        <IonButton onClick={stopListening} disabled={!isListening}>
-          Stop Speech Recognition
+        <IonButton expand="full" onClick={toggleListening}>
+          {isListening ? "Stop Speech Recognition" : "Start Speech Recognition"}
         </IonButton>
         <IonButton expand="full" onClick={increaseFontSize}>
           Increase Font Size
