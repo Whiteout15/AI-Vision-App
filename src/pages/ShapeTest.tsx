@@ -45,6 +45,7 @@ const ShapeTest: React.FC = () => {
     new Set<string>()
   );
   const [iconsToShow, setIconsToShow] = useState([]);
+  const [buttonPressCount, setButtonPressCount] = useState(0);
 
   useEffect(() => {
     setIconsToShow(selectRandomIcons());
@@ -113,10 +114,22 @@ const ShapeTest: React.FC = () => {
   };
 
   const updateRandomIcons = () => {
-    setRecognizedKeywords(new Set());
+    let newCount = buttonPressCount + 1;
+    setButtonPressCount(newCount);
+    if (newCount > 5) {
+      setButtonPressCount(0);
+      history.push("./Results", { testMode, eyeToExamine });
+    } else {
+      setButtonPressCount(newCount);
+      setRecognizedKeywords(new Set());
 
-    // Update the icons
-    setIconsToShow(selectRandomIcons());
+      // Update the icons
+      setIconsToShow(selectRandomIcons());
+    }
+  };
+
+  const endTest = () => {
+    history.push("./Results", { testMode, eyeToExamine });
   };
 
   return (
@@ -154,6 +167,13 @@ const ShapeTest: React.FC = () => {
         <IonButton expand="full" onClick={updateRandomIcons}>
           Next
         </IonButton>
+
+        <IonButton expand="full" onClick={endTest}>
+          End Test
+        </IonButton>
+        <IonText style={{ textAlign: "center" }}>
+          Vision Test: {buttonPressCount}/5
+        </IonText>
       </IonContent>
     </IonPage>
   );

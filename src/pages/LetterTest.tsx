@@ -102,23 +102,25 @@ const LetterTest: React.FC = () => {
     const newCount = buttonPressCount + 1;
     setButtonPressCount(newCount);
 
-    if (newCount === 6) {
-      history.push("./Results", {testMode, eyeToExamine });
+    if (newCount > 5) {
+      setButtonPressCount(0);
+      history.push("./Results", { testMode, eyeToExamine });
     } else {
+      setButtonPressCount(newCount);
       setRandomString(generateRandomString());
     }
   };
 
   const endTest = () => {
-    history.push("./Results", {testMode, eyeToExamine });
-  }
+    history.push("./Results", { testMode, eyeToExamine });
+  };
 
   return (
     <IonPage>
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding">
         <IonText className="testText" style={{ fontSize: fontSize }}>
-        {randomString.map((obj, index) => (
+          {randomString.map((obj, index) => (
             <span
               key={index}
               style={{ color: obj.recognized ? "green" : "black" }}
@@ -147,9 +149,6 @@ const LetterTest: React.FC = () => {
         <div className="test-button">
           <Button buttonText="End Test" onClickAction={endTest} />
         </div>
-
-        
-        
 
         <IonText style={{ textAlign: "center" }}>
           Vision Test: {buttonPressCount}/5
