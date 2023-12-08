@@ -38,7 +38,7 @@ const ShapeTest: React.FC = () => {
   const location = useLocation<LocationState>();
   const { testMode, wearGlasses, eyeToExamine } = location.state || {};
   const history = useHistory();
-  const [fontSize, setFontSize] = useState(20);
+  const [fontSize, setFontSize] = useState(60);
   const [recognition, setRecognition] = useState(null);
   const [isListening, setIsListening] = useState(false);
   const [recognizedKeywords, setRecognizedKeywords] = useState(
