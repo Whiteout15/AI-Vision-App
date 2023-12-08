@@ -35,6 +35,7 @@ const Terms: React.FC = () => {
     if (isChecked) {
       // Set the first launch flag in localStorage and navigate to the next page
       localStorage.setItem("firstLaunch", "false");
+
       history.push("./TestConfig");
     } else {
       setShowAlert(true);
