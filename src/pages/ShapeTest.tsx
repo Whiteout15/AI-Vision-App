@@ -19,7 +19,6 @@ interface LocationState {
   eyeToExamine?: string;
 }
 
-
 const iconMap = {
   home: <IonIcon name="home-outline" />,
   flower: <IonIcon name="flower-outline" />,
@@ -53,7 +52,7 @@ const generateRandomString = () => {
   return randomString;
 };
 
-const LetterTest: React.FC = () => {
+const ShapeTest: React.FC = () => {
   const location = useLocation<LocationState>();
   const { testMode, wearGlasses, eyeToExamine } = location.state || {};
   const history = useHistory();
@@ -62,7 +61,9 @@ const LetterTest: React.FC = () => {
   const [fontSize, setFontSize] = useState(70);
   const [recognition, setRecognition] = useState(null);
   const [isListening, setIsListening] = useState(false);
-  const [iconsToShow, setIconsToShow] = useState(shuffleArray(icons).slice(0, 5));
+  const [iconsToShow, setIconsToShow] = useState(
+    shuffleArray(icons).slice(0, 5)
+  );
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
@@ -128,7 +129,7 @@ const LetterTest: React.FC = () => {
     setButtonPressCount(newCount);
 
     if (newCount === 6) {
-      history.push("./Results", {testMode, wearGlasses, eyeToExamine });
+      history.push("./Results", { testMode, wearGlasses, eyeToExamine });
     } else {
       setRandomString(generateRandomString());
       const shuffledIcons = shuffleArray(icons);
@@ -153,7 +154,7 @@ const LetterTest: React.FC = () => {
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding">
         <IonText className="testText" style={{ fontSize: fontSize }}>
-        {randomString.map((obj, index) => (
+          {randomString.map((obj, index) => (
             <span
               key={index}
               style={{ color: obj.recognized ? "green" : "black" }}
@@ -165,7 +166,11 @@ const LetterTest: React.FC = () => {
 
         <div className="imageContainer">
           {iconsToShow.map((icon, index) => (
-            <IonText key={index} className="testImages" style={{ fontSize: fontSize }}>
+            <IonText
+              key={index}
+              className="testImages"
+              style={{ fontSize: fontSize }}
+            >
               {icon}
             </IonText>
           ))}
@@ -195,4 +200,4 @@ const LetterTest: React.FC = () => {
   );
 };
 
-export default LetterTest;
+export default ShapeTest;
