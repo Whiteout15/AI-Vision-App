@@ -132,7 +132,7 @@ const ShapeTest: React.FC = () => {
   return (
     <IonPage>
       <Header headerText="Vision Test" />
-      <IonContent className="ion-padding">
+      <IonContent className="ion-padding" scrollY={false}>
         <div className="imageContainer">
           {iconsToShow.map(({ keyword, icon }, index) => (
             <IonText

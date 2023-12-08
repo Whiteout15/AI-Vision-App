@@ -38,7 +38,7 @@ const CameraPage: React.FC = () => {
   return (
     <IonPage>
       <Header headerText="Distance Calculations" />
-      <IonContent fullscreen>
+      <IonContent fullscreen scrollY={false}>
         <PreTest />
         <div className="distance-button">
           <Button buttonText="Continue" onClickAction={continueToExam} />
