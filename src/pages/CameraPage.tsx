@@ -10,12 +10,28 @@ import "./Home.css";
 import "./CameraPage.css"
 import Header from "../components/Header/Header";
 import Button from "../components/Button/Button";
+import { useLocation } from "react-router-dom";
+
+interface LocationState {
+  testMode?: string;
+  // wearGlasses?: string;
+  eyeToExamine?: string;
+}
+
 
 const CameraPage: React.FC = () => {
+  const location = useLocation<LocationState>();
+  const { testMode, eyeToExamine } = location.state || {};
   const history = useHistory();
 
   const continueToExam = () => {
-    history.push("/VisionTest"); // Ensure the route is correct
+    if (testMode === "Letters") {
+      history.push("/LetterTest", { testMode, eyeToExamine });
+    }
+
+    else if (testMode === "Shapes") {
+      history.push("/ShapeTest", { testMode, eyeToExamine });
+    }
   };
 
   return (
@@ -23,7 +39,11 @@ const CameraPage: React.FC = () => {
       <Header headerText="Distance Calculations" />
       <IonContent fullscreen>
         <PreTest />
-        <Button buttonText="Continue" onClickAction={continueToExam} />        
+        <div className="distance-button">
+        <Button buttonText="Continue" onClickAction={continueToExam} /> 
+        </div>
+         
+        {/* {testMode} */}
       </IonContent>
       
     </IonPage>

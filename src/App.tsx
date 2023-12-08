@@ -28,7 +28,8 @@ import Sample from "./components/PreTest";
 import SampleTest from "./components/PreTest";
 import PreTest from "./components/PreTest";
 import CameraPage from "./pages/CameraPage";
-import VisionTest from "./pages/VisionTest";
+import LetterTest from "./pages/LetterTest";
+import ShapeTest from "./pages/ShapeTest";
 import Results from "./pages/Results";
 import VoiceTest from "./pages/VoiceTest";
 
@@ -38,17 +39,18 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
+        <Route exact path="/Home">
           <Home />
         </Route>
         <Route exact path="/">
-          <Redirect to="/home" />
+          <Redirect to="/Home" />
         </Route>
         <Route path="/Terms" component={Terms} exact />
         <Route path="/TestConfig" component={TestConfig} exact />
         <Route path="/Test" component={Test} exact />
         <Route path="/CameraPage" component={CameraPage} exact />
-        <Route path="/VisionTest" component={VisionTest} exact />
+        <Route path="/LetterTest" component={LetterTest} exact />
+        <Route path="/ShapeTest" component={ShapeTest} exact />
         <Route path="/Results" component={Results} exact />
         <Route path="/VoiceTest" component={VoiceTest} exact />
       </IonRouterOutlet>

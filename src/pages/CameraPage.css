@@ -1,0 +1,11 @@
+.distance-button {
+    margin-top: -85px;
+}
+
+.distance-button button {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    margin: 0;
+}

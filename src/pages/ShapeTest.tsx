@@ -10,7 +10,15 @@ import { PiBirdBold } from "react-icons/pi";
 import { FaCat, FaHorse, FaCarSide } from "react-icons/fa";
 import { FaSailboat } from "react-icons/fa6";
 import { WiTrain } from "react-icons/wi";
-import "./VisionTest.css";
+import { useLocation } from "react-router-dom";
+import "./LetterTest.css";
+
+interface LocationState {
+  testMode?: string;
+  wearGlasses?: string;
+  eyeToExamine?: string;
+}
+
 
 const iconMap = {
   home: <IonIcon name="home-outline" />,
@@ -45,7 +53,9 @@ const generateRandomString = () => {
   return randomString;
 };
 
-const VisionTest: React.FC = () => {
+const LetterTest: React.FC = () => {
+  const location = useLocation<LocationState>();
+  const { testMode, wearGlasses, eyeToExamine } = location.state || {};
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString());
   const [buttonPressCount, setButtonPressCount] = useState(0);
@@ -118,7 +128,7 @@ const VisionTest: React.FC = () => {
     setButtonPressCount(newCount);
 
     if (newCount === 6) {
-      history.push("./Results");
+      history.push("./Results", {testMode, wearGlasses, eyeToExamine });
     } else {
       setRandomString(generateRandomString());
       const shuffledIcons = shuffleArray(icons);
@@ -185,4 +195,4 @@ const VisionTest: React.FC = () => {
   );
 };
 
-export default VisionTest;
+export default LetterTest;

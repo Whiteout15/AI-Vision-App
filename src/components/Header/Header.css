@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 20px;
-    background-color: tomato;
+    background-color: #000;
+    color: #FFF;
   }
   
   .header header {

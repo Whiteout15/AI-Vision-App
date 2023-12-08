@@ -6,13 +6,22 @@ import SampleTest from "../components/PreTest";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Button from "../components/Button/Button";
+import { useLocation } from "react-router-dom";
 import "./Test.css"
 
+interface LocationState {
+  testMode?: string;
+  // wearGlasses?: string;
+  eyeToExamine?: string;
+}
+
 const Test: React.FC = () => {
+  const location = useLocation<LocationState>();
+  const { testMode, eyeToExamine } = location.state || {};
   const history = useHistory();
 
   const goToSampleTest = () => {
-    history.push("/CameraPage");
+    history.push("/CameraPage", { testMode, eyeToExamine });
   };
 
   const webcamRef = useRef<HTMLVideoElement>(null);
@@ -144,7 +153,7 @@ const Test: React.FC = () => {
             Hold your face in front of your webcam to get real-time face
             landmarker detection. <br />
             <br />
-            Click <b>Enable Webcam</b> below and grant access to the webcam if
+            Grant access to the webcam if
             prompted. Face should be parallel/level with camera and environment
             should be well lit.{" "}
             <br /><br />
@@ -152,7 +161,7 @@ const Test: React.FC = () => {
             <br /><br />
             Wear glasses if you are looking to see if you need a new prescription.
             <br /><br />
-            You will be prompted with one letter at a time. Say the letter and wait for the results.
+            You will be prompted with five letters at a time. Say the letter and wait for the results.
             <br /><br />
             Ensure you are 14 inches away from the camera for correct testing conditions.
             <br /><br />

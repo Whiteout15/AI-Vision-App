@@ -10,29 +10,25 @@ import {
 import Header from "../components/Header/Header";
 import "./Results.css";
 import { eyeOutline } from "ionicons/icons";
+import { useLocation } from "react-router-dom";
 
-
-
-const generateRandomString = () => {
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
-  let randomString = "";
-
-  for (let i = 0; i < 5; i++) {
-    const randomIndex = Math.floor(Math.random() * alphabet.length);
-    randomString += alphabet[randomIndex];
-  }
-
-  return randomString;
-};
+interface LocationState {
+  testMode?: string;
+  // wearGlasses?: string;
+  eyeToExamine?: string;
+}
 
 const Results: React.FC = () => {
+  const location = useLocation<LocationState>();
+  const { testMode, eyeToExamine } = location.state || {};
   const history = useHistory();
 
   return (
     <IonPage>
       <Header headerText="Results" />
       <IonContent className="ion-padding">
-        <h1>Eye Tested: </h1>
+        <h1>Test Mode: {testMode} </h1>
+        <h1>Eye Tested: {eyeToExamine} </h1>
         <h1>Eye Strength: </h1>
 
         <div className="result-button-container">

@@ -21,21 +21,22 @@ import { eyeOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Button from "../components/Button/Button";
+import Results from "./Results";
 import "./TestConfig.css";
 
 const TestConfig: React.FC = () => {
   const history = useHistory();
+  const [showDatePicker, setShowDatePicker] = useState(false); 
   const [testMode, setTestMode] = useState("");
-  const [showDatePicker, setShowDatePicker] = useState(false);
-  const [wearGlasses, setWearGlasses] = useState<string>("");
+  // const [wearGlasses, setWearGlasses] = useState<string>("");
   const [eyeToExamine, setEyeToExamine] = useState<string>("");
   const [showAlert, setShowAlert] = useState(false);
 
   const continueToPreTest = () => {
-    if (!testMode || !wearGlasses || !eyeToExamine) {
+    if (!testMode || !eyeToExamine) {
       setShowAlert(true);
     } else {
-      history.push("/Test"); // Ensure the route is correct
+      history.push("/Test", { testMode, eyeToExamine });
     }
   };
 
@@ -48,15 +49,15 @@ const TestConfig: React.FC = () => {
       <IonContent>
       <IonItem>
           <IonLabel position="stacked">
-            <h1 className="question">Alphanumerical or Images?</h1>
+            <h1 className="question">Letters or Shapes?</h1>
           </IonLabel>
           <IonSelect
             value={testMode}
             placeholder="Select Alphanumerical or Images"
             onIonChange={(e) => setTestMode(e.detail.value)}
           >
-            <IonSelectOption value="Letters">Alphanumerical</IonSelectOption>
-            <IonSelectOption value="Images">Images</IonSelectOption>
+            <IonSelectOption value="Letters">Letters</IonSelectOption>
+            <IonSelectOption value="Images">Shapes</IonSelectOption>
           </IonSelect>
         </IonItem>
         {/* <IonItem onClick={() => setShowDatePicker(true)}>
@@ -71,7 +72,7 @@ const TestConfig: React.FC = () => {
             placeholder="Select Birth Year"
           />
         </IonItem> */}
-        <IonItem>
+        {/* <IonItem>
           <IonLabel position="stacked">
             <h1 className="question">Do you wear glasses?</h1>
           </IonLabel>
@@ -83,7 +84,7 @@ const TestConfig: React.FC = () => {
             <IonSelectOption value="Yes">Yes</IonSelectOption>
             <IonSelectOption value="No">No</IonSelectOption>
           </IonSelect>
-        </IonItem>
+        </IonItem> */}
 
         <IonItem>
           <IonLabel position="stacked">
