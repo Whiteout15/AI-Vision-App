@@ -1,0 +1,25 @@
+.result-button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+.result-button {
+    background-color: #000;
+    color: #FFF;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-button h1 {
+    font-weight: bold;
+    font-size: 40px;
+    margin-right: 10px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+  
+  .home-button .eye {
+    margin-left: auto;
+  }
