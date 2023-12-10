@@ -57,6 +57,7 @@ const LetterTest: React.FC = () => {
   const [visualAcuityIndex, setVisualAcuityIndex] = useState(7); // Initial visual acuity index for 20/20 vision
   // const visualAcuityMeasurements = [0.23, 0.29, 0.35, 0.47, 0.58, 0.82, 1.23, 2.51];
   const visualAcuityMeasurements = [0.8, 1, 1.2, 1.5, 2, 2.8, 4, 8];
+  const eyeStrengthValues = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/70', '20/100', '20/200'];
 
   const getFontSizePx = (mm) => {
     return getDynamicFontSize(mm);
@@ -71,20 +72,37 @@ const LetterTest: React.FC = () => {
       const grammar =
         "#JSGF V1.0; grammar lettersAndNumbers; public <letterOrNumber> = (A | B | C | D | ... | Z | 0 | 1 | 2 | ... | 9);";
       speechRecognitionList.addFromString(grammar, 1);
-
+  
       webkitRecognition.grammars = speechRecognitionList;
       webkitRecognition.maxAlternatives = 1;
       webkitRecognition.continuous = true;
       webkitRecognition.interimResults = true;
       webkitRecognition.lang = "en-US";
-
+  
+      // Create a mapping of ignored words to corresponding letters
+      const wordToLetterMap = {
+        "oh": "o",
+        "you": "u",
+        "ok": "k",
+        "jay": "j",
+        "are": "r",
+        "aye": "a",
+        "be": "b",
+        "see": "c",
+        "why": "y"
+      };
+  
       webkitRecognition.onresult = (event) => {
         for (let i = event.resultIndex; i < event.results.length; ++i) {
-          const transcript = event.results[i][0].transcript
-            .trim()
-            .toUpperCase();
+          let transcript = event.results[i][0].transcript.trim().toUpperCase();
+  
+          // Replace each ignored word with a unique letter
+          Object.entries(wordToLetterMap).forEach(([word, letter]) => {
+            transcript = transcript.replace(new RegExp(word.toUpperCase(), 'g'), letter);
+          });
+  
           console.log("Transcript:", transcript);
-
+  
           setRandomString((currentString) =>
             currentString.map((obj) =>
               obj.letter === transcript ? { ...obj, recognized: true } : obj
@@ -92,7 +110,7 @@ const LetterTest: React.FC = () => {
           );
         }
       };
-
+  
       setRecognition(webkitRecognition);
     } else {
       alert(
@@ -118,18 +136,24 @@ const LetterTest: React.FC = () => {
   const updateRandomIcons = () => {
     const newCount = buttonPressCount + 1;
     setButtonPressCount(newCount);
-
+  
     if (newCount > 5) {
-      setButtonPressCount(0);
-      history.push("./Results", { testMode, eyeToExamine });
+      endTest();
     } else {
-      setButtonPressCount(newCount);
+      const currentGreenLetterCount = randomString.filter((obj) => obj.recognized).length;
+  
+      if (currentGreenLetterCount >= 3) {
+        decreaseFontSize();
+      }
+  
       setRandomString(generateRandomString());
     }
   };
 
   const endTest = () => {
-    history.push("./Results", { testMode, eyeToExamine });
+    setButtonPressCount(0);
+      const selectedEyeStrength = eyeStrengthValues[visualAcuityIndex];
+      history.push("./Results", { testMode, eyeToExamine, eyeStrength: selectedEyeStrength });
   };
 
   const toggleListening = () => {

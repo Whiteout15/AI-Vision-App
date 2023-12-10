@@ -20,7 +20,7 @@ interface LocationState {
 
 const Results: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine } = location.state || {};
+  const { testMode, eyeToExamine, eyeStrength } = location.state || {};
   const history = useHistory();
 
   return (
@@ -29,7 +29,7 @@ const Results: React.FC = () => {
       <IonContent className="ion-padding" scrollY={false}>
         <h1>Test Mode: {testMode} </h1>
         <h1>Eye Tested: {eyeToExamine} </h1>
-        <h1>Eye Strength: </h1>
+        <h1>Eye Strength: {eyeStrength}</h1>
 
         <div className="result-button-container">
           <button className="result-button">
