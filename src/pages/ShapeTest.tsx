@@ -11,7 +11,7 @@ import { FaCat, FaHorse, FaCarSide } from "react-icons/fa";
 import { FaSailboat } from "react-icons/fa6";
 import { WiTrain } from "react-icons/wi";
 import { useLocation } from "react-router-dom";
-import "./LetterTest.css";
+import "./ShapeTest.css";
 
 interface LocationState {
   testMode?: string;
@@ -158,11 +158,15 @@ const ShapeTest: React.FC = () => {
         <IonButton expand="full" onClick={decreaseFontSize}>
           Decrease Font Size
         </IonButton>
-        <IonButton expand="full" onClick={updateRandomIcons}>
+        <IonButton
+          className="App-Button"
+          expand="full"
+          onClick={updateRandomIcons}
+        >
           Next
         </IonButton>
 
-        <IonButton expand="full" onClick={endTest}>
+        <IonButton className="App-Button" expand="full" onClick={endTest}>
           End Test
         </IonButton>
         <IonText style={{ textAlign: "center" }}>
