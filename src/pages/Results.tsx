@@ -14,8 +14,8 @@ import { useLocation } from "react-router-dom";
 
 interface LocationState {
   testMode?: string;
-  // wearGlasses?: string;
   eyeToExamine?: string;
+  eyeStrength?: string;
 }
 
 const Results: React.FC = () => {

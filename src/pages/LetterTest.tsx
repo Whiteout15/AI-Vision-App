@@ -9,8 +9,24 @@ import Button from "../components/Button/Button";
 
 interface LocationState {
   testMode?: string;
-  // wearGlasses?: string;
   eyeToExamine?: string;
+  eyeStrength?: string;
+}
+
+function getDynamicFontSize(physicalSizeMm) {
+  function getDevicePixelRatio() {
+    if (window.screen.systemXDPI !== undefined && window.screen.logicalXDPI !== undefined && window.screen.systemXDPI > window.screen.logicalXDPI) {
+      return window.screen.systemXDPI / window.screen.logicalXDPI;
+    } else if (window.devicePixelRatio !== undefined) {
+      return window.devicePixelRatio;
+    }
+    return 1;
+  }
+
+  let physicalSizeInches = physicalSizeMm / 25.4;
+  let basePpi = 96;
+  let effectivePpi = basePpi * getDevicePixelRatio();
+  return physicalSizeInches * effectivePpi;
 }
 
 const generateRandomString = () => {
@@ -35,9 +51,18 @@ const LetterTest: React.FC = () => {
   const history = useHistory();
   const [randomString, setRandomString] = useState(generateRandomString());
   const [buttonPressCount, setButtonPressCount] = useState(0);
-  const [fontSize, setFontSize] = useState(70);
+  // const [fontSize, setFontSize] = useState(70);
   const [recognition, setRecognition] = useState(null);
   const [isListening, setIsListening] = useState(false);
+  const [visualAcuityIndex, setVisualAcuityIndex] = useState(7); // Initial visual acuity index for 20/20 vision
+  // const visualAcuityMeasurements = [0.23, 0.29, 0.35, 0.47, 0.58, 0.82, 1.23, 2.51];
+  const visualAcuityMeasurements = [0.8, 1, 1.2, 1.5, 2, 2.8, 4, 8];
+
+  const getFontSizePx = (mm) => {
+    return getDynamicFontSize(mm);
+  };
+
+  const fontSizePx = getFontSizePx(visualAcuityMeasurements[visualAcuityIndex]);
 
   useEffect(() => {
     if ("webkitSpeechRecognition" in window) {
@@ -58,9 +83,8 @@ const LetterTest: React.FC = () => {
           const transcript = event.results[i][0].transcript
             .trim()
             .toUpperCase();
-          console.log("Transcript:", transcript); // Log everything picked up by the microphone
+          console.log("Transcript:", transcript);
 
-          // Check if the recognized transcript matches any character in randomString
           setRandomString((currentString) =>
             currentString.map((obj) =>
               obj.letter === transcript ? { ...obj, recognized: true } : obj
@@ -78,11 +102,17 @@ const LetterTest: React.FC = () => {
   }, []);
 
   const increaseFontSize = () => {
-    setFontSize(fontSize + 2);
+    if (visualAcuityIndex < visualAcuityMeasurements.length - 1) {
+      setVisualAcuityIndex(visualAcuityIndex + 1);
+      setRandomString(generateRandomString());
+    }
   };
 
   const decreaseFontSize = () => {
-    setFontSize(fontSize - 2);
+    if (visualAcuityIndex > 0) {
+      setVisualAcuityIndex(visualAcuityIndex - 1);
+      setRandomString(generateRandomString());
+    }
   };
 
   const updateRandomIcons = () => {
@@ -117,7 +147,7 @@ const LetterTest: React.FC = () => {
     <IonPage>
       <Header headerText="Vision Test" />
       <IonContent className="ion-padding" scrollY={false}>
-        <IonText className="testText" style={{ fontSize: fontSize }}>
+        <IonText className="testText" style={{ fontSize: `${fontSizePx}px` }}>
           {randomString.map((obj, index) => (
             <span
               key={index}
