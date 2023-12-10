@@ -26,18 +26,15 @@ const Home: React.FC = () => {
 
   return (
     <IonPage>
-      <Header headerText="Vision Test" />
+      {/* <Header headerText="Vision Test" /> */}
       <IonContent className="ion-padding" scrollY={false}>
-        <IonCard>
-          <IonCardContent>
-            <IonText>
-              <p className="app-description">
-                An Artificial Intelligence Based Near Vision Tester. Providing
-                accurate and reliable at home vision testing.
-              </p>
-            </IonText>
-          </IonCardContent>
-        </IonCard>
+
+        <h1 className="welcome-title">Welcome to the Vision AI App</h1>
+
+        <p className="app-description">
+          An Artificial Intelligence Based Near Vision Tester. Providing
+          accurate and reliable at home vision testing.
+        </p>
         <Button buttonText="Continue" onClickAction={goToTermsPage} />
       </IonContent>
     </IonPage>

@@ -81,15 +81,15 @@ const LetterTest: React.FC = () => {
   
       // Create a mapping of ignored words to corresponding letters
       const wordToLetterMap = {
-        "oh": "o",
-        "you": "u",
-        "ok": "k",
-        "jay": "j",
-        "are": "r",
-        "aye": "a",
-        "be": "b",
-        "see": "c",
-        "why": "y"
+        "OH": "O",
+        "you": "U",
+        "ok": "K",
+        "jay": "J",
+        "are": "R",
+        "AYE": "A",
+        "be": "B",
+        "see": "C",
+        "why": "Y",
       };
   
       webkitRecognition.onresult = (event) => {
