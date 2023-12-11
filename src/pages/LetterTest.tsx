@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { IonContent, IonPage, IonButton, IonText } from "@ionic/react";
+import { IonContent, IonPage, IonButton, IonText, IonIcon } from "@ionic/react";
 import Header from "../components/Header/Header";
-import IonIcon from "@reacticons/ionicons";
 import { useLocation } from "react-router-dom";
+import { eyeOutline } from "ionicons/icons";
 import "./LetterTest.css";
 import Button from "../components/Button/Button";
 
@@ -86,7 +86,7 @@ const LetterTest: React.FC = () => {
         "ok": "K",
         "jay": "J",
         "are": "R",
-        "AYE": "A",
+        "AYE": "I",
         "be": "B",
         "see": "C",
         "why": "Y",
@@ -137,7 +137,7 @@ const LetterTest: React.FC = () => {
     const newCount = buttonPressCount + 1;
     setButtonPressCount(newCount);
   
-    if (newCount > 5) {
+    if (newCount > 7) {
       endTest();
     } else {
       const currentGreenLetterCount = randomString.filter((obj) => obj.recognized).length;
@@ -182,26 +182,26 @@ const LetterTest: React.FC = () => {
           ))}
         </IonText>
 
-        <IonButton expand="full" onClick={toggleListening}>
-          {isListening ? "Stop Speech Recognition" : "Start Speech Recognition"}
-        </IonButton>
-        <IonButton expand="full" onClick={increaseFontSize}>
-          Increase Font Size
-        </IonButton>
-        <IonButton expand="full" onClick={decreaseFontSize}>
-          Decrease Font Size
-        </IonButton>
-
-        <div className="test-button">
-          <Button buttonText="Next" onClickAction={updateRandomIcons} />
+        <div className="letter-button-container">
+          <button className="letter-button" onClick={toggleListening}>
+            <h1>{isListening ? "Stop Speech Recognition" : "Start Speech Recognition"}</h1>
+            <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+          </button>
         </div>
-
-        <div className="test-button">
-          <Button buttonText="End Test" onClickAction={endTest} />
+        <div className="letter-next-button-container">
+          <button className="letter-next-button" onClick={updateRandomIcons}>
+            <h1>Next</h1>
+            <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+          </button>
         </div>
-
+        <div className="letter-end-button-container">
+          <button className="letter-end-button" onClick={endTest}>
+            <h1>End Test</h1>
+            <IonIcon className="eye" slot="end" size="large" icon={eyeOutline}></IonIcon>
+          </button>
+        </div>
         <IonText style={{ textAlign: "center" }}>
-          Vision Test: {buttonPressCount}/5
+          <h1>Letter Test: {buttonPressCount}/7</h1>
         </IonText>
       </IonContent>
     </IonPage>
