@@ -165,6 +165,8 @@ const Test: React.FC = () => {
             <br /><br />
             Ensure you are 14 inches away from the camera for correct testing conditions.
             <br /><br />
+            End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct.
+            <br /><br />
           </p>
         </div>
         <Button buttonText="Continue" onClickAction={goToSampleTest}/>
