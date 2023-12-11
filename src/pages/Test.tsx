@@ -7,21 +7,22 @@ import { useHistory } from "react-router-dom";
 import Header from "../components/Header/Header";
 import Button from "../components/Button/Button";
 import { useLocation } from "react-router-dom";
-import "./Test.css"
+import "./Test.css";
 
 interface LocationState {
   testMode?: string;
   // wearGlasses?: string;
   eyeToExamine?: string;
+  numberOfCharacters?: number;
 }
 
 const Test: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine } = location.state || {};
+  const { testMode, eyeToExamine, numberOfCharacters } = location.state || {};
   const history = useHistory();
 
   const goToSampleTest = () => {
-    history.push("/CameraPage", { testMode, eyeToExamine });
+    history.push("/CameraPage", { testMode, eyeToExamine, numberOfCharacters });
   };
 
   const webcamRef = useRef<HTMLVideoElement>(null);
@@ -145,32 +146,41 @@ const Test: React.FC = () => {
     // <IonPage id="container">
 
     <IonPage>
-      <Header headerText="Instructions"/>
-      
+      <Header headerText="Instructions" />
+
       <IonContent fullscreen className="ion-padding" scrollY={false}>
         <div className="instructions-container">
           <p className="instructions-text">
             Hold your face in front of your webcam to get real-time face
             landmarker detection. <br />
             <br />
-            Grant access to the webcam if
-            prompted. Face should be parallel/level with camera and environment
-            should be well lit.{" "}
-            <br /><br />
+            Grant access to the webcam if prompted. Face should be
+            parallel/level with camera and environment should be well lit.{" "}
+            <br />
+            <br />
             If you are testing one eye, cover the eye that is not being tested.
-            <br /><br />
-            Wear glasses if you are looking to see if you need a new prescription.
-            <br /><br />
-            You will be prompted with five letters at a time. Say the letter and wait for the results.
-            <br /><br />
-            Ensure you are 14 inches away from the camera for correct testing conditions.
-            <br /><br />
-            End the test when you can no longer read the letters or images clearly or if you cannot get 3/5 correct.
-            <br /><br />
+            <br />
+            <br />
+            Wear glasses if you are looking to see if you need a new
+            prescription.
+            <br />
+            <br />
+            You will be prompted with five letters at a time. Say the letter and
+            wait for the results.
+            <br />
+            <br />
+            Ensure you are 14 inches away from the camera for correct testing
+            conditions.
+            <br />
+            <br />
+            End the test when you can no longer read the letters or images
+            clearly or if you cannot get 3/5 correct.
+            <br />
+            <br />
           </p>
         </div>
-        <Button buttonText="Continue" onClickAction={goToSampleTest}/>
-       
+        <Button buttonText="Continue" onClickAction={goToSampleTest} />
+
         <div id="liveView" className="videoView">
           {/* <IonButton id="webcamButton" onClick={enableCam}>
             {webcamRunning ? "DISABLE WEBCAM" : "ENABLE WEBCAM"}
@@ -189,7 +199,6 @@ const Test: React.FC = () => {
             ></canvas>
           </div>
         </div>
-        
       </IonContent>
     </IonPage>
   );

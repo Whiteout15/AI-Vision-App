@@ -16,24 +16,41 @@ interface LocationState {
   testMode?: string;
   // wearGlasses?: string;
   eyeToExamine?: string;
+  numberOfCharacters?: number;
 }
 
 const CameraPage: React.FC = () => {
   const location = useLocation<LocationState>();
-  const { testMode, eyeToExamine } = location.state || {};
+  const { testMode, eyeToExamine, numberOfCharacters } = location.state || {};
   const history = useHistory();
 
   const continueToExam = () => {
-    console.log("Test Mode:", testMode, "Eye to Examine:", eyeToExamine);
+    console.log(
+      "Test Mode:",
+      testMode,
+      "Eye to Examine:",
+      eyeToExamine,
+      "Number of Characters:",
+      numberOfCharacters
+    );
 
     if (testMode === "Letters") {
-      history.push("/LetterTest", { testMode, eyeToExamine });
+      history.push("/LetterTest", {
+        testMode,
+        eyeToExamine,
+        numberOfCharacters,
+      });
     } else if (testMode === "Images") {
-      history.push("/ShapeTest", { testMode, eyeToExamine });
+      history.push("/ShapeTest", {
+        testMode,
+        eyeToExamine,
+        numberOfCharacters,
+      });
     } else {
       console.error("Invalid test mode:", testMode);
     }
   };
+  console.log("Current numberOfCharacters value:", numberOfCharacters);
 
   return (
     <IonPage>
