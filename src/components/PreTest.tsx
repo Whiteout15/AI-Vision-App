@@ -4,6 +4,7 @@ import {
   FaceDetector,
   Detection,
 } from "@mediapipe/tasks-vision";
+import { IonButton } from "@ionic/react";
 
 const PreTest: React.FC = () => {
   const [faceDetector, setFaceDetector] = useState<FaceDetector | null>(null);
@@ -136,7 +137,7 @@ const PreTest: React.FC = () => {
         {/* ... */}
       </section>
 
-      <button
+      <IonButton
         id="webcamButton"
         className={`mdc-button mdc-button--raised ${
           enableWebcamButton ? "" : "removed"
@@ -145,17 +146,16 @@ const PreTest: React.FC = () => {
       >
         <span className="mdc-button__ripple"></span>
         <span className="mdc-button__label">ENABLE WEBCAM</span>
-      </button>
-
+      </IonButton>
+      <div id="liveView" className="videoView">
+        {children}
+      </div>
       <video
         id="webcam"
         autoPlay
         playsInline
         ref={(el) => setVideo(el)}
       ></video>
-      <div id="liveView" className="videoView">
-        {children}
-      </div>
     </div>
   );
 };
