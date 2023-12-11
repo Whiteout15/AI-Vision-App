@@ -1,0 +1,23 @@
+{
+  "name": "CapacitorScreenshot",
+  "version": "5.0.0",
+  "summary": "This plugin take screenshot of the app or webpage",
+  "license": "MIT",
+  "homepage": "git+https://github.com/ludufre/capacitor-screenshot.git",
+  "authors": "Luan Freitas (ludufre)",
+  "source": {
+    "git": "git+https://github.com/ludufre/capacitor-screenshot.git",
+    "tag": "5.0.0"
+  },
+  "source_files": "ios/Plugin/**/*.{swift,h,m,c,cc,mm,cpp}",
+  "platforms": {
+    "ios": "13.0"
+  },
+  "dependencies": {
+    "Capacitor": [
+
+    ]
+  },
+  "swift_versions": "5.1",
+  "swift_version": "5.1"
+}

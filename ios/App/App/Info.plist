@@ -2,10 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <!-- Camera Usage Description -->
+    <key>NSCameraUsageDescription</key>
+    <string>This app requires camera access to calculate the users distance from the phone for proper setup of vision test.</string>
+
+    <!-- Microphone Usage Description -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>This app requires microphone access for speech recognition during vision tests.</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-        <string>Ai-React</string>
+        <string>Vision AI</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
