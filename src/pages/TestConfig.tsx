@@ -53,7 +53,7 @@ const TestConfig: React.FC = () => {
           </IonLabel>
           <IonSelect
             value={testMode}
-            placeholder="Select Letters or Images"
+            placeholder="Select Letters or Shapes"
             onIonChange={(e) => setTestMode(e.detail.value)}
           >
             <IonSelectOption value="Letters">Letters</IonSelectOption>

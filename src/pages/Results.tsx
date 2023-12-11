@@ -54,7 +54,7 @@ const Results: React.FC = () => {
       <Header headerText="Results" />
       <IonContent className="ion-padding" scrollY={false}>
         <div className="results-container">
-          <div id="screenshot-content">
+          <div className="screenshot" id="screenshot-content">
             <h1>Test Mode: {testMode} </h1>
             <h1>Eye Tested: {eyeToExamine} </h1>
             <h1>Eye Strength: {eyeStrength}</h1>
