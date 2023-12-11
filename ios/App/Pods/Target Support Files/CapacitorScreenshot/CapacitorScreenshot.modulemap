@@ -1,0 +1,6 @@
+framework module CapacitorScreenshot {
+  umbrella header "CapacitorScreenshot-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,5 +1,5 @@
 {
-  "name": "Ai-React",
+  "name": "Vision AI",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -28,6 +28,7 @@
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
+    "android": "^0.0.8",
     "capacitor-screenshot": "^5.0.0",
     "ionicons": "^7.0.0",
     "material-components-web": "^14.0.0",
